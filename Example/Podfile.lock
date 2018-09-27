@@ -1,0 +1,29 @@
+PODS:
+  - SDWebImage (5.0.0-beta3):
+    - SDWebImage/Core (= 5.0.0-beta3)
+  - SDWebImage/Core (5.0.0-beta3)
+  - SDWebImageSVGCoder (0.1.0):
+    - SDWebImage (>= 5.0.0-beta3)
+    - SwiftSVG (~> 2.0)
+  - SwiftSVG (2.1.5)
+
+DEPENDENCIES:
+  - SDWebImageSVGCoder (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SDWebImage
+    - SwiftSVG
+
+EXTERNAL SOURCES:
+  SDWebImageSVGCoder:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SDWebImage: e52654ceef9fdc19f4c612d64a5b6d3f05dd81a4
+  SDWebImageSVGCoder: 2840c48739012db471eb9eb73d9d5c5470d201bc
+  SwiftSVG: 9d78f41396a921c210ce9898ada05c85d412acb8
+
+PODFILE CHECKSUM: ca7a6147d7283199bd51eb691f2dca498e0f1ec4
+
+COCOAPODS: 1.5.3
