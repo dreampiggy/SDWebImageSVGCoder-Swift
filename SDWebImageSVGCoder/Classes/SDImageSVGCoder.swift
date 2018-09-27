@@ -12,9 +12,11 @@ import SwiftSVG
 @objcMembers
 open class SDImageSVGCoder : NSObject, SDImageCoder {
     @objc(sharedCoder) public static let shared = SDImageSVGCoder()
+    private let kXMLTagStart = "<?xml"
+    private let kSVGTagEnd = "</svg>"
     
     public func canDecode(from data: Data?) -> Bool {
-        return true
+        return isSVGFormat(data)
     }
     
     public func decodedImage(with data: Data?, options: [SDImageCoderOption : Any]? = nil) -> UIImage? {
@@ -56,5 +58,28 @@ open class SDImageSVGCoder : NSObject, SDImageCoder {
         return nil
     }
     
+    private func isSVGFormat(_ data: Data?) -> Bool {
+        guard let data = data else {
+            return false
+        }
+        if (data.count <= 100) {
+            return false
+        }
+        // Check start with XML tag
+        guard let testString = String(data: data.subdata(in: 0..<100), encoding: .ascii) else {
+            return false
+        }
+        if (testString.range(of: kXMLTagStart) == nil) {
+            return false
+        }
+        // Check end with SVG tag
+        guard let testString2 = String(data: data.subdata(in: data.count-100..<data.count), encoding: .ascii) else {
+            return false
+        }
+        if (testString2.range(of: kSVGTagEnd) == nil) {
+            return false
+        }
+        return true
+    }
 }
 
