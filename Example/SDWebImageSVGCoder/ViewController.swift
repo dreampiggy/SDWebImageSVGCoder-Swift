@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 import SDWebImageSVGCoder
+import Macaw
 
 class ViewController: UIViewController {
 
@@ -23,7 +24,8 @@ class ViewController: UIViewController {
         
         let screenSize = UIScreen.main.bounds.size
         
-        let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height / 2))
+        let imageView1 = SVGView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height / 2))
+        imageView1.backgroundColor = UIColor.white
         let imageView2 = UIImageView(frame: CGRect(x: 0, y: screenSize.height / 2, width: screenSize.width, height: screenSize.height / 2))
         
         self.view.addSubview(imageView1)
@@ -31,7 +33,7 @@ class ViewController: UIViewController {
         
         imageView1.sd_setImage(with: svgURL) { (image, error, cacheType, url) in
             if image != nil {
-                print("UIImageView SVG load success")
+                print("SVGView SVG load success")
             }
         }
         imageView2.sd_setImage(with: svgURL2) { (image, error, cacheType, url) in
