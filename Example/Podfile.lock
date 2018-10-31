@@ -1,28 +1,32 @@
 PODS:
+  - Macaw (0.9.3):
+    - SWXMLHash
   - SDWebImage (5.0.0-beta3):
     - SDWebImage/Core (= 5.0.0-beta3)
   - SDWebImage/Core (5.0.0-beta3)
   - SDWebImageSVGCoder (0.1.0):
+    - Macaw (>= 0.8.0)
     - SDWebImage (>= 5.0.0-beta3)
-    - SwiftSVG (~> 2.0)
-  - SwiftSVG (2.1.5)
+  - SWXMLHash (4.7.4)
 
 DEPENDENCIES:
   - SDWebImageSVGCoder (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Macaw
     - SDWebImage
-    - SwiftSVG
+    - SWXMLHash
 
 EXTERNAL SOURCES:
   SDWebImageSVGCoder:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Macaw: e370d81f465ea1daa8a72d2afa218000bcd24f0a
   SDWebImage: e52654ceef9fdc19f4c612d64a5b6d3f05dd81a4
-  SDWebImageSVGCoder: 2840c48739012db471eb9eb73d9d5c5470d201bc
-  SwiftSVG: 9d78f41396a921c210ce9898ada05c85d412acb8
+  SDWebImageSVGCoder: b9b6efd0ab6e997d2044e8a4667d44a7dea8ca80
+  SWXMLHash: b35739a5cfd915c3b482977aa720d6708e260a90
 
 PODFILE CHECKSUM: ca7a6147d7283199bd51eb691f2dca498e0f1ec4
 

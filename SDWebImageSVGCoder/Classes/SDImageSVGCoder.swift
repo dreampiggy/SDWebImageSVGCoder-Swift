@@ -7,7 +7,7 @@
 
 import Foundation
 import SDWebImage
-import SwiftSVG
+import Macaw
 
 @objcMembers
 open class SDImageSVGCoder : NSObject, SDImageCoder {
@@ -22,27 +22,22 @@ open class SDImageSVGCoder : NSObject, SDImageCoder {
         guard let data = data else {
             return nil
         }
-        let parser = NSXMLSVGParser(SVGData: data)
-        var SVGLayer: SVGLayer?
-        
-        // Async operation to sync because we're already in global queue
-        let group = DispatchGroup()
-        group.enter()
-        parser.completionBlock = { (layer) in
-            group.leave()
-            SVGLayer = layer
+        guard let svgString = String(data: data, encoding: .utf8) else {
+            return nil
         }
-        parser.startParsing()
-        _ = group.wait(timeout: .distantFuture)
-        guard let layer = SVGLayer else {
+        guard let node = try? SVGParser.parse(text: svgString) else {
             return nil
         }
         
-        UIGraphicsBeginImageContextWithOptions(layer.boundingBox.size, false, UIScreen.main.scale)
+        let imageSize = node.bounds?.size().toCG() ?? UIScreen.main.bounds.size
+        
+        let svgView = SVGView(node: node, frame: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
+        
+        UIGraphicsBeginImageContextWithOptions(imageSize, false, UIScreen.main.scale)
         guard let context = UIGraphicsGetCurrentContext() else {
             return nil
         }
-        layer.render(in: context)
+        svgView.layer.draw(in: context)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
